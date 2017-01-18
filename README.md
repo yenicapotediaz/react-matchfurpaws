@@ -1,4 +1,4 @@
-T# Capstone Product Plan
+# Capstone Product Plan
 
 ## Product Plan Components
 1. __Problem Statement__: Adopting a pet is a huge commitment that sometimes involves spending time navigating pet adoption websites without being able to filter the type of pet you are looking for. It can also be hard on animal rescues that get tons of applications from adopters that are not a good match for that pet. It can be a hassle to find a match, both for rescues and adopters. I want to create a website that gives the rescue and the adopter a smoother experience during the search for a forever pet. I want to provide a different way of searching for a pet, by providing a more wholesome picture of the adopter and the adoptable pet: create a personality/lifestyle profile that matches based on crucial information about both parties similar to a dating website.
