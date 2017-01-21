@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
-import './App.css';
-import Header from './Components/Header';
-import About from './Components/About';
-import Profile from './Components/Profile';
-import Pets from './Components/Pets';
-import Login from './Components/Login';
+import Navbar from './Components/Navbar';
+import Routes from './Routes';
 import Footer from './Components/Footer';
+import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
-        <About />
-        <Profile />
-        <Pets />
-        <Login />
+        <Navbar />
+        <Routes />
         <Footer />
       </div>
     );
