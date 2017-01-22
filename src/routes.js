@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Router, Route, browserHistory } from 'react-router';
-import Navbar from './Components/Navbar';
 import Login from './Components/Login';
 import Pets from './Components/Pets';
 import Profile from './Components/Profile';
