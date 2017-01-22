@@ -104,3 +104,13 @@ header .banner-text hr {
    height: 120px;
    border-radius: 100%;
 }
+
+.Pet {
+   border: 1pt solid black;
+   display: inline-block;
+   max-width: 30%;
+}
+
+#pets, #login {
+  margin-left: 2%;
+}

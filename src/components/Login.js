@@ -1,62 +1,12 @@
 import React, { Component } from 'react';
-
-class CreateUser extends Component {
-  constructor() {
-    super();
-    this.state = {
-      newUser: {}
-    }
-  }
-
-  handleNewUser(e){
-  this.setState({newUser:{
-    name: this.refs.email.value,
-    email: this.refs.email.value,
-    password: this.refs.password.value,
-    password_confirmation: this.refs.confirm_password.value
-  }}, function(){
-    console.log(this.state.newUser);
-    // this.props.login(this.state.user);
-  });
-  //add a way to clear form
-  e.preventDefault();
-
-}
-
-  render() {
-    return (
-      <div id="create-user">
-        <h3> Or create a new account! </h3>
-        <form onSubmit={this.handleNewUser.bind(this)}>
-        <div>
-          <label>Name</label><br/>
-          <input type="text" ref="name" />
-        </div>
-        <div>
-          <label>Email</label><br/>
-          <input type="text" ref="email" />
-        </div>
-        <div>
-          <label>Password</label><br/>
-          <input type="password" ref="password" />
-        </div>
-        <div>
-          <label>Confirm Password</label><br/>
-          <input type="password" ref="password_confirmation" />
-        </div>
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
-    );
-  }
-}
-
+import $ from 'jquery';
 
 class Login extends Component {
   constructor() {
     super();
     this.state = {
-      user: {}
+      user: {},
+      userKey: {}
     }
   }
 
@@ -73,10 +23,38 @@ class Login extends Component {
 
 }
 
+getUser() {
+  $.ajax({
+    url:  'http://matchfurpaws-api.herokuapp.com/login',
+    method: 'POST',
+    data: {
+      "email": "yeni@gmail.com",
+    	"password": "joaquin"
+    },
+    contentType:'json',
+    cache: false,
+    success: function(data){
+      this.setState({userKey: data}, function(){
+        console.log(data);
+      });
+    }.bind(this),
+    error: function(xhr, status, err){
+      console.log(err);
+    }
+  });
+}
+
+componentWillMount(){
+  this.getUser();
+}
+
+componentDidMount(){
+  this.getUser();
+}
+
   render() {
     return (
       <div id="login">
-      <CreateUser />
         <h3> Welcome, please log in! </h3>
         <form onSubmit={this.handleSubmit.bind(this)}>
         <div>
@@ -89,7 +67,6 @@ class Login extends Component {
         </div>
           <input type="submit" value="Submit" />
         </form>
-
       </div>
     );
   }
