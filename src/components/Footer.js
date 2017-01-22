@@ -4,9 +4,13 @@ class Footer extends Component {
 
   render() {
     return (
-      <div>
-
-      </div>
+      <footer>
+        <div className="row">
+          <div className="twelve columns">
+            <p>Include some disclosure footer</p>
+          </div>
+        </div>
+      </footer>
     );
   }
 }

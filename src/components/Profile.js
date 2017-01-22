@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 class Profile extends Component {
   render() {
     return (
-      <div>
-        Profile
-      </div>
+      <section id="profile">
+        Here goes the profile
+      </section>
     );
   }
 }

@@ -53,13 +53,6 @@ header .banner-text hr {
    border-color: rgba(150, 150, 150, .1);
 }
 
-#profile, #about, #login, #pets {
-   background: #fff;
-   padding-top: 90px;
-   padding-bottom: 72px;
-   overflow: hidden;
-}
-
 #nav-wrap ul, #nav-wrap li, #nav-wrap a {
 	 margin: 0;
 	 padding: 0;
@@ -95,4 +88,19 @@ header .banner-text hr {
    text-decoration: none;
    text-align: left;
    color: #fff;
+}
+
+
+#profile, #about, #login, #pets {
+   background: #fff;
+   padding-top: 90px;
+   padding-bottom: 72px;
+   overflow: hidden;
+}
+
+.about-pic {
+   position: relative;
+   width: 120px;
+   height: 120px;
+   border-radius: 100%;
 }
