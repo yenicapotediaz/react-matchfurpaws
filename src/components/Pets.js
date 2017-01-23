@@ -52,9 +52,23 @@ class Pets extends Component {
     }
   }
 
-  getPets(species, home_type, hasClickedCats, hasClickedDogs){
+  getPets(species, home_type, clickCats, clickDogs){
+    var cats_query,
+    dogs_query;
+    if (clickCats === false) {
+      cats_query = "";
+    } else {
+      cats_query = '&cats=' + clickCats;
+    }
+
+    if (clickDogs === false) {
+      dogs_query = "";
+    } else {
+      dogs_query = '&dogs=' + clickCats;
+    }
+
     $.ajax({
-      url:  'https://matchfurpaws-api.herokuapp.com/pets?species=' + species + '&home_type=' + home_type + '&cats=' + hasClickedCats + '&dogs=' + hasClickedDogs,
+      url:  'https://matchfurpaws-api.herokuapp.com/pets?species=' + species + '&home_type=' + home_type + dogs_query + cats_query,
       headers: {'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE0ODUyMjgwOTF9.N1qlA41OD9xRRGNaQTIp9RNhgvq5mK2_x8nHCSE5ZV8'},
       dataType:'json',
       cache: false,
@@ -69,15 +83,6 @@ class Pets extends Component {
   }
 
   render() {
-    //***** Notice the PetSearch component and the property (prop) onSubmitForm
-
-    /*
-    The this.getPets() function (from Pets Component) is being sent to the child
-    component PetSearch under the name "onSubmitForm".
-
-    Now, all PetSearch has to do is call this.getPets under the name it
-    recognizes: "onSubmitForm". You do this in PetSearch as this.props.onSubmitForm()
-    */
     return (
       <div id="pets">
         <PetSearch onSubmitForm={this.getPets.bind(this)}/>
@@ -94,8 +99,8 @@ class PetSearch extends Component {
       query: {
         species: ""
       },
-      hasClickedCats: false,
-      hasClickedDogs: false
+      clickCats: false,
+      clickDogs: false
     }
   }
 
@@ -106,7 +111,7 @@ class PetSearch extends Component {
       console.log(this.state);
       console.log(this.refs.cats.value);
       console.log(this.refs.dogs.value);
-      this.props.onSubmitForm(this.refs.species.value, this.refs.home_type.value, this.state.hasClickedCats, this.state.hasClickedDogs)
+      this.props.onSubmitForm(this.refs.species.value, this.refs.home_type.value, this.state.clickCats, this.state.clickDogs)
     });
     e.preventDefault();
   }
@@ -116,18 +121,17 @@ class PetSearch extends Component {
     home_options: ["house", "apartment"]
   }
 
-  clickedCheckbox(pet_type, e){
+  checkBox(pet_type, e){
     console.log(pet_type);
-    console.log("This is e value in clickedCheckbox :", e.toString());
+    console.log("This is e value in checkBox :", e.toString());
     if (pet_type == "cats"){
-      this.setState({hasClickedCats: !this.state.hasClickedCats})
+      this.setState({clickCats: !this.state.clickCats})
     } else {
-      this.setState({hasClickedDogs: !this.state.hasClickedDogs})
+      this.setState({clickDogs: !this.state.clickDogs})
     }
   }
 
   render(){
-    // this.props.onSubmitForm is the function to call when we want to call the API
     let speciesOptions = this.props.species_type.map(species => {
       return <option key={species} value={species}>{species}</option>
     })
@@ -146,11 +150,11 @@ class PetSearch extends Component {
           </div>
           <div>
            <label>good with cats</label><br/>
-           <input type="checkbox" onClick={this.clickedCheckbox.bind(this, "cats")} ref="cats" />
+           <input type="checkbox" onClick={this.checkBox.bind(this, "cats")} ref="cats" />
          </div>
          <div>
            <label>good with dogs</label><br/>
-           <input type="checkbox" onClick={this.clickedCheckbox.bind(this, "dogs")} ref="dogs" />
+           <input type="checkbox" onClick={this.checkBox.bind(this, "dogs")} ref="dogs" />
          </div>
           <div>
            <label>Home Type</label><br/>
