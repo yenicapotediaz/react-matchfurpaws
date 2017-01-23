@@ -7,11 +7,14 @@ class PetProfiles extends Component {
       <div className="PetContainer">
         <ul>
           <li className="Pet">
-          <strong> {this.props.pet.name}</strong>
+          <strong> {this.props.pet.name}</strong><br />
           <img alt="pet" src={this.props.pet.photos}/>
           <br/>
           {this.props.pet.species}<br/>
           {this.props.pet.bio}<br/>
+          {this.props.pet.home_type}<br/>
+          good with cats: {(this.props.pet.cats)? "Yes" : "No"} <br />
+          good with dogs: {(this.props.pet.dogs)? "Yes" : "No"} <br />
           {this.props.pet.id} - {this.props.pet.shelter_id}
           </li>
         </ul>
@@ -32,8 +35,53 @@ class PetCollection extends Component {
     }
     return (
       <div className="Pets">
-      <h3> Here are your pet matches</ h3>
+      <h3> Here are your pet matches</h3>
       {petProfiles}
+      </div>
+    );
+  }
+}
+
+
+
+class Pets extends Component {
+  constructor() {
+    super();
+    this.state = {
+      pets: []
+    }
+  }
+
+  getPets(species, home_type, hasClickedCats, hasClickedDogs){
+    $.ajax({
+      url:  'https://matchfurpaws-api.herokuapp.com/pets?species=' + species + '&home_type=' + home_type + '&cats=' + hasClickedCats + '&dogs=' + hasClickedDogs,
+      headers: {'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE0ODUyMjgwOTF9.N1qlA41OD9xRRGNaQTIp9RNhgvq5mK2_x8nHCSE5ZV8'},
+      dataType:'json',
+      cache: false,
+      success: function(data){
+        this.setState({pets: data}, function(){
+        });
+      }.bind(this),
+      error: function(xhr, status, err){
+        console.log(err);
+      }
+    });
+  }
+
+  render() {
+    //***** Notice the PetSearch component and the property (prop) onSubmitForm
+
+    /*
+    The this.getPets() function (from Pets Component) is being sent to the child
+    component PetSearch under the name "onSubmitForm".
+
+    Now, all PetSearch has to do is call this.getPets under the name it
+    recognizes: "onSubmitForm". You do this in PetSearch as this.props.onSubmitForm()
+    */
+    return (
+      <div id="pets">
+        <PetSearch onSubmitForm={this.getPets.bind(this)}/>
+        <PetCollection pets={this.state.pets}/>
       </div>
     );
   }
@@ -44,26 +92,22 @@ class PetSearch extends Component {
     super();
     this.state = {
       query: {
-        species: "",
-        dogs: "",
-        cats: "",
-        home_type: ""
-      }
+        species: ""
+      },
+      hasClickedCats: false,
+      hasClickedDogs: false
     }
   }
 
   handleSubmit(e){
-    console.log(this.state.query);
     this.setState({query:{
-      species: this.refs.species.value,
-      dogs: this.refs.dogs.value,
-      cats: this.refs.cats.value,
-      home_type: this.refs.home_type.value,
+      species: this.refs.species.value
     }}, function(){
-      console.log(this.state.query);
-      console.log(this.state.query.species);
+      console.log(this.state);
+      console.log(this.refs.cats.value);
+      console.log(this.refs.dogs.value);
+      this.props.onSubmitForm(this.refs.species.value, this.refs.home_type.value, this.state.hasClickedCats, this.state.hasClickedDogs)
     });
-    //add a way to clear form
     e.preventDefault();
   }
 
@@ -72,7 +116,18 @@ class PetSearch extends Component {
     home_options: ["house", "apartment"]
   }
 
+  clickedCheckbox(pet_type, e){
+    console.log(pet_type);
+    console.log("This is e value in clickedCheckbox :", e.toString());
+    if (pet_type == "cats"){
+      this.setState({hasClickedCats: !this.state.hasClickedCats})
+    } else {
+      this.setState({hasClickedDogs: !this.state.hasClickedDogs})
+    }
+  }
+
   render(){
+    // this.props.onSubmitForm is the function to call when we want to call the API
     let speciesOptions = this.props.species_type.map(species => {
       return <option key={species} value={species}>{species}</option>
     })
@@ -82,7 +137,7 @@ class PetSearch extends Component {
     return (
       <div id="petSearch">
         <h3>Search for an adoptable pet:</h3>
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <form onSubmit={this.handleSubmit.bind(this)} action="/pets">
           <div>
             <label>Species</label><br/>
             <select ref="species">
@@ -90,78 +145,21 @@ class PetSearch extends Component {
             </select>
           </div>
           <div>
-            <label>good with cats</label><br/>
-            <input type="hidden" value="false" ref="cats" />
-            <input type="checkbox" value="true" ref="cats" />
-          </div>
+           <label>good with cats</label><br/>
+           <input type="checkbox" onClick={this.clickedCheckbox.bind(this, "cats")} ref="cats" />
+         </div>
+         <div>
+           <label>good with dogs</label><br/>
+           <input type="checkbox" onClick={this.clickedCheckbox.bind(this, "dogs")} ref="dogs" />
+         </div>
           <div>
-            <label>good with dogs</label><br/>
-            <input type="hidden" value="" ref="dogs" />
-            <input type="checkbox" value="true" ref="cats" />
-          </div>
-          <div>
-            <label>Home Type</label><br/>
-            <select ref="home_type">
-              {homeOptions}
-            </select>
-          </div>
+           <label>Home Type</label><br/>
+           <select ref="home_type">
+             {homeOptions}
+           </select>
+         </div>
           <input id="pet-form" type="submit" value="Submit" />
         </form>
-      </div>
-    );
-  }
-}
-
-class Pets extends Component {
-  constructor() {
-    super();
-    this.state = {
-      pets: []
-    }
-  }
-
-  getPets(){
-    let petQuery = this.state.query;
-    console.log(petQuery + "is PQ");
-    if (this.state.query === undefined) {
-      var basicUrl = 'https://matchfurpaws-api.herokuapp.com/pets'
-    } else {
-      var basicUrl = 'https://matchfurpaws-api.herokuapp.com/pets?species=' + this.state.query.species + '&dogs=' + this.state.query.dogs + '&cats=' + this.state.query.cats + '&home_type=' + this.props.query.home_type
-    }
-    $.ajax({
-      url:  basicUrl,
-      headers: {'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE0ODUxNDAxMTl9.tTiUNMTaY7a2xH6jO3a7EzOsrZENm67YMlIIeZ4tzhM'},
-      dataType:'json',
-      cache: false,
-      success: function(data){
-        this.setState({pets: data}, function(){
-          console.log(this.state);
-          console.log(this.state.query);
-        });
-      }.bind(this),
-      error: function(xhr, status, err){
-        console.log(err);
-      }
-    });
-  }
-
-  componentDidUpdate(){
-
-  }
-
-  componentWillMount(){
-    this.getPets();
-  }
-
-  componentDidMount(){
-    this.getPets();
-  }
-
-  render() {
-    return (
-      <div id="pets">
-        <PetSearch />
-        <PetCollection pets={this.state.pets}/>
       </div>
     );
   }
