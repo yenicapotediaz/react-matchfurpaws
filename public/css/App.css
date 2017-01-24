@@ -23,7 +23,7 @@ header .banner {
    vertical-align: middle;
    margin: 0 auto;
    width: 85%;
-   padding-bottom: 30px;s
+   padding-bottom: 30px;
    text-align: center;
 }
 
@@ -111,6 +111,14 @@ header .banner-text hr {
    max-width: 30%;
 }
 
+.pet-image {
+  max-width: 100%;
+}
+
 #pets, #login {
   margin-left: 2%;
+}
+
+#petProf li {
+   display: inline-block;;
 }
