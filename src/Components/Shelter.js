@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
 class ShelterProfile extends Component {
@@ -51,7 +52,7 @@ class Shelter extends Component {
     var email_query = email.replace(/@/, "%40");
     $.ajax({
       url:  'https://matchfurpaws-api.herokuapp.com/shelters?email=' + email_query,
-      headers: {'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE0ODUyNDc2MDd9.oZ2uJ7Z_kqEyr8e0o2uE0EsJ6lPc4_9PymXP3pcHycg'},
+      headers: {'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE0ODU0MTAzMzB9.jGh7AoYdLZSsbtagbyiIWCGYvEwbOQmiGSkELEv0uXg'},
       dataType:'json',
       cache: false,
       success: function(data){
@@ -91,7 +92,6 @@ class Login extends Component {
       console.log(this.state.user);
       this.props.onSubmitForm(this.refs.email.value);
     });
-    //add a way to clear form
     e.preventDefault();
   }
 
@@ -99,7 +99,7 @@ class Login extends Component {
     return (
       <div id="login">
         <h3> Welcome, please log in! </h3>
-        <form onSubmit={this.handleSubmit.bind(this)} action="/login">
+        <form onSubmit={this.handleSubmit.bind(this)}>
         <div>
           <label>Email</label><br/>
           <input type="text" ref="email" />
