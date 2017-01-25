@@ -8,7 +8,7 @@ header {
    width: 100%;
    background: #161415 url(../images/Akiak-dog-cropped.jpg) no-repeat bottom center;
    text-align: center;
-   overflow: hidden;
+   /*overflow: hidden;*/
 }
 
 /* vertically center banner section */
@@ -73,6 +73,7 @@ header .banner-text hr {
 }
 
 #nav {
+   /*background-color: teal;*/
    min-height: 48px;
    width: auto;
    text-align: center;
@@ -95,7 +96,7 @@ header .banner-text hr {
    background: #fff;
    padding-top: 90px;
    padding-bottom: 72px;
-   overflow: hidden;
+   /*overflow: hidden;*/
 }
 
 .about-pic {
@@ -108,17 +109,40 @@ header .banner-text hr {
 .Pet {
    border: 1pt solid black;
    display: inline-block;
-   max-width: 30%;
+   max-width: 95%;
 }
 
-.pet-image {
+.Container {
   max-width: 100%;
+
+  /*display: inline-block;*/
+}
+
+.pet-image, .pet-profile-image {
+  max-width: 90%;
+}
+
+.Pets {
+  height: 400px;
+  width: 250px;
+  padding: 7px 7px;
+  margin: 1%;
+  border: 1px solid #e7e7e7;
+  border-radius: 10px;
+  box-shadow: 0 0 3px 1px rgba(99,99,99,0.3);
+  box-sizing: border-box;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.pet-profiles{
+  display: inline-block;
 }
 
 #pets, #login {
   margin-left: 2%;
 }
 
-#petProf li {
-   display: inline-block;;
+#petProf {
+   display: inline-block;
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
 import PetProfile from './PetProfile';
+import { Row, Col} from 'react-bootstrap';
 
 class PetCollection extends Component {
   render(){
@@ -13,11 +13,9 @@ class PetCollection extends Component {
       });
     }
     return (
-      <div>
-        <div className="Pets">
-          {petProfiles}
-        </div>
-      </div>
+      <Row className="pet-profiles">
+        {petProfiles}
+      </Row>
     );
   }
 }
