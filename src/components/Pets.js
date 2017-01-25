@@ -10,7 +10,6 @@ class Pets extends Component {
     this.state = {
       pets: [],
       displaySinglePet : false,
-      displaySearchForm : true,
       pet: {}
     }
   }
@@ -76,18 +75,31 @@ class Pets extends Component {
 
   togglePetShow(){
     this.setState({displaySinglePet : !this.state.displaySinglePet})
-    this.setState({displayPetForm : !this.state.displayPetForm})
+    console.log(this.state.displaySinglePet);
+    if (this.state.displaySinglePet === false) {
+      $("#pet-form-render").hide();
+    } else {
+      $("#pet-form-render").show();
+    }
+
   }
 
   petToDisplay(petData) {
     this.setState({displaySinglePet : !this.state.displaySinglePet, pet: petData})
-    this.setState({displayPetForm : !this.state.displayPetForm})
+    console.log(this.state.displaySinglePet);
+    if (this.state.displaySinglePet === false) {
+      $("#pet-form-render").hide();
+    } else {
+      $("#pet-form-render").show();
+    }
   }
 
   render() {
       return (
       <div id="pets">
-        <PetSearch onSubmitForm={this.getPets.bind(this)}/>
+        <div id="pet-form-render">
+          <PetSearch onSubmitForm={this.getPets.bind(this)}/>
+        </div>
     		{
     			(this.state.displaySinglePet) ?
     				<SinglePet petData={this.state.pet} backfn={this.togglePetShow.bind(this)}/> : <PetCollection pets={this.state.pets} singlePetfn={this.petToDisplay.bind(this)}/>
