@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute, NoMatch } from 'react-router';
 import Shelter from './Components/Shelter';
 import Pets from './Components/Pets';
-import Profile from './Components/Profile';
 import About from './Components/About';
 import Home from './Components/Home';
 import App from './App';

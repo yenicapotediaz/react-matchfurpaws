@@ -5,18 +5,35 @@ import $ from 'jquery';
 class ShelterProfile extends Component {
   render(){
     return (
-      <div className="ShelterContainer">
-        <ul id="shelterProf">
-          <li className="Shelter">
-            <strong> {this.props.shelter.name}</strong><br />
-            <img className="shelter-image" alt="shelter profile" src={this.props.shelter.photos}/>
-            <br/>
-            Email: {this.props.shelter.email}<br/>
-            Website: <a href="#">{this.props.shelter.website}</a><br />
-            City: {this.props.shelter.city}<br />
-            About us:{this.props.shelter.bio}
-          </li>
-        </ul>
+      <div className="row ShelterContainer">
+        <div className="col-md-5">
+          <strong> {this.props.shelter.name}</strong><br />
+          <img className="shelter-image" alt="shelter profile" src={this.props.shelter.photos}/>
+        </div>
+        <div className="col-md-5">
+          <table className="table table-bordered table-condensed">
+            <tbody>
+              <tr>
+                <td>Email</td>
+                <td>{this.props.shelter.email}</td>
+              </tr>
+              <tr>
+                <td>Website</td>
+                <td><a href="#">{this.props.shelter.website}</a></td>
+              </tr>
+              <tr>
+                <td>City</td>
+                <td>{this.props.shelter.city}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div className="col-md-2">
+        </div>
+        <div className="col-md-12">
+          <h3>About us:</h3>
+          {this.props.shelter.bio}
+        </div>
       </div>
     );
   }
@@ -68,7 +85,9 @@ class Shelter extends Component {
   render() {
     return (
       <div id="shelters">
-        <Login onSubmitForm={this.getShelter.bind(this)}/>
+        <div id="form-toggle">
+          <Login onSubmitForm={this.getShelter.bind(this)}/>
+        </div>
         <ShelterCollection shelters={this.state.shelters}/>
       </div>
     );
