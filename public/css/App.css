@@ -122,6 +122,21 @@ header .banner-text hr {
   max-width: 90%;
 }
 
+.good-with {
+  padding-left: 10px;
+}
+
+ .Container-form {
+  max-width: 85%;
+  padding: 7px 7px;
+  margin: 1%;
+  border: 1px solid #e7e7e7;
+  border-radius: 10px;
+  box-shadow: 0 0 3px 1px rgba(99,99,99,0.3);
+  box-sizing: border-box;
+  background-color: #ffffff;
+  overflow: hidden;
+}
 .Pets {
   height: 400px;
   width: 250px;

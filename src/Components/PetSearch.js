@@ -52,37 +52,41 @@ class PetSearch extends Component {
       return <option key={location} value={location}>{location}</option>
     })
     return (
-      <div id="petSearch">
-        <h3>Search for an adoptable pet:</h3>
-        <form className="pet-form" onSubmit={this.handleSubmit.bind(this)} action="/pets">
-          <div>
-            <label>Species</label><br/>
-            <select ref="species">
-              {speciesOptions}
-            </select>
+      <div className="Container-form">
+        <h5>Search for a pet!</h5>
+        <form className="form-horizontal pet-form" onSubmit={this.handleSubmit.bind(this)} action="/pets">
+          <div className="form-group">
+            <div className="col-lg-2">
+              <label>Location</label><br />
+              <select ref="location">
+                {locationOptions}
+              </select>
+            </div>
+            <div className="col-lg-2">
+              <label>Species</label><br />
+              <select ref="species">
+                {speciesOptions}
+              </select>
+            </div>
+            <div className="col-lg-2">
+              <label>Home type</label><br />
+              <select ref="home_type">
+                {homeOptions}
+              </select>
+            </div>
+            <div className="col-lg-4">
+              <label>Good with:</label><br />
+                <label>Cats</label>
+                <input type="checkbox" onClick={this.checkBox.bind(this, "cats")} ref="cats" />
+                <label className="good-with">Dogs</label>
+                <input type="checkbox" onClick={this.checkBox.bind(this, "dogs")} ref="dogs" />
+                <label className="good-with">Kids</label>
+                <input type="checkbox" onClick={this.checkBox.bind(this, "kids")} ref="kids" />
+            </div>
+            <div className="col-lg-2">
+              <input id="pet-form" type="submit" value="Find your match" />
+            </div>
           </div>
-          <div>
-            <label>Good with:</label>
-            <label>Cats</label>
-            <input type="checkbox" onClick={this.checkBox.bind(this, "cats")} ref="cats" /><br/>
-            <label>Dogs</label>
-            <input type="checkbox" onClick={this.checkBox.bind(this, "dogs")} ref="dogs" /><br/>
-            <label>Kids</label>
-            <input type="checkbox" onClick={this.checkBox.bind(this, "kids")} ref="kids" /><br/>
-          </div>
-          <div>
-           <label>Home type</label><br/>
-           <select ref="home_type">
-             {homeOptions}
-           </select>
-           <div>
-             <label>Location</label><br/>
-             <select ref="location">
-               {locationOptions}
-             </select>
-           </div>
-         </div>
-          <input id="pet-form" type="submit" value="Find your match" />
         </form>
       </div>
     );
