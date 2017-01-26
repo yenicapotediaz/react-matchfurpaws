@@ -17,9 +17,6 @@ class PetSearch extends Component {
     this.setState({query:{
       species: this.refs.species.value
     }}, function(){
-      console.log(this.state);
-      console.log(this.refs.cats.value);
-      console.log(this.refs.dogs.value);
       this.props.onSubmitForm(this.state.clickKids, this.refs.location.value, this.refs.species.value, this.refs.home_type.value, this.state.clickCats, this.state.clickDogs)
     });
     e.preventDefault();
@@ -53,7 +50,6 @@ class PetSearch extends Component {
     })
     return (
       <div className="Container-form">
-        <h5>Search for a pet!</h5>
         <form className="form-horizontal pet-form" onSubmit={this.handleSubmit.bind(this)} action="/pets">
           <div className="form-group">
             <div className="col-lg-2">

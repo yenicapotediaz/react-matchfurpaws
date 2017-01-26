@@ -15,12 +15,8 @@ class CreateUser extends Component {
     password: this.refs.password.value,
     password_confirmation: this.refs.confirm_password.value
   }}, function(){
-    console.log(this.state.newUser);
-    // this.props.login(this.state.user);
   });
-  //add a way to clear form
   e.preventDefault();
-
 }
 
   render() {

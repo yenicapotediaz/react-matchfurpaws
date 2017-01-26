@@ -68,14 +68,12 @@ class Pets extends Component {
         });
       }.bind(this),
       error: function(xhr, status, err){
-        console.log(err);
       }
     });
   }
 
   togglePetShow(){
     this.setState({displaySinglePet : !this.state.displaySinglePet})
-    console.log(this.state.displaySinglePet);
     if (this.state.displaySinglePet === false) {
       $("#pet-form-render").hide();
     } else {
@@ -86,7 +84,6 @@ class Pets extends Component {
 
   petToDisplay(petData) {
     this.setState({displaySinglePet : !this.state.displaySinglePet, pet: petData})
-    console.log(this.state.displaySinglePet);
     if (this.state.displaySinglePet === false) {
       $("#pet-form-render").hide();
     } else {

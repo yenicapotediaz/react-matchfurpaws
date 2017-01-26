@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PetProfile from './PetProfile';
-import { Row, Col} from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 
 class PetCollection extends Component {
   render(){

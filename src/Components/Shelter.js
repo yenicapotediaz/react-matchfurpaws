@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
 class ShelterProfile extends Component {
@@ -77,7 +76,6 @@ class Shelter extends Component {
         });
       }.bind(this),
       error: function(xhr, status, err){
-        console.log(err);
       }
     });
   }
@@ -108,7 +106,6 @@ class Login extends Component {
       email: this.refs.email.value,
       password: this.refs.password.value
     }}, function(){
-      console.log(this.state.user);
       this.props.onSubmitForm(this.refs.email.value);
     });
     e.preventDefault();
