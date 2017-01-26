@@ -6,51 +6,8 @@ header {
    height: 700px;
    min-height: 500px;
    width: 100%;
-   background: #161415 url(../images/Akiak-dog-cropped.jpg) no-repeat bottom center;
+   background: #161415 url(../images/best-friend.jpg) no-repeat bottom center;
    text-align: center;
-   /*overflow: hidden;*/
-}
-
-/* vertically center banner section */
-header:before {
-   content: '';
-   display: inline-block;
-   vertical-align: middle;
-   height: 100%;
-}
-header .banner {
-   display: inline-block;
-   vertical-align: middle;
-   margin: 0 auto;
-   width: 85%;
-   padding-bottom: 30px;
-   text-align: center;
-}
-
-header .banner-text { width: 100%; }
-header .banner-text h1 {
-   font: 90px/1.1em 'opensans-bold', sans-serif;
-   color: #fff;
-   letter-spacing: -2px;
-   margin: 0 auto 18px auto;
-   text-shadow: 0px 1px 3px rgba(0, 0, 0, .8);
-}
-header .banner-text h3 {
-   font: 18px/1.9em 'librebaskerville-regular', serif;
-   color: #A8A8A8;
-   margin: 0 auto;
-   width: 70%;
-   text-shadow: 0px 1px 2px rgba(0, 0, 0, .5);
-}
-header .banner-text h3 span,
-header .banner-text h3 a {
-   color: #fff;
-}
-header .banner-text hr {
-   width: 60%;
-   margin: 18px auto 24px auto;
-   border-color: #2F2D2E;
-   border-color: rgba(150, 150, 150, .1);
 }
 
 #nav-wrap ul, #nav-wrap li, #nav-wrap a {
@@ -73,10 +30,11 @@ header .banner-text hr {
 }
 
 #nav {
-   /*background-color: teal;*/
+   background-color: #efefef;
    min-height: 48px;
    width: auto;
    text-align: center;
+   color: #414141;
 }
 
 #nav li {
@@ -92,12 +50,14 @@ header .banner-text hr {
 }
 
 
-#profile, #about, #login, #pets {
+#about, #login{
    background: #fff;
-   padding-top: 90px;
-   padding-bottom: 72px;
+   /*padding-top: 90px;*/
+   padding: 5%;
    /*overflow: hidden;*/
 }
+
+
 
 .about-pic {
    position: relative;
@@ -107,7 +67,7 @@ header .banner-text hr {
 }
 
 .Pet {
-   border: 1pt solid black;
+   border: 1pt solid grey;
    display: inline-block;
    max-width: 95%;
 }
@@ -137,6 +97,7 @@ header .banner-text hr {
   background-color: #ffffff;
   overflow: hidden;
 }
+
 .Pets {
   height: 400px;
   width: 250px;
@@ -148,6 +109,52 @@ header .banner-text hr {
   box-sizing: border-box;
   background-color: #ffffff;
   overflow: hidden;
+  padding-bottom: 5%;
+}
+
+.bio {
+  font-family: 'Prata', sans-serif;
+  font-size: 12pt;
+  text-transform: none;
+  color: #5c5c70;
+  line-height: 25px;
+}
+
+.name {
+  text-transform: none;
+  font-family: 'Prata', sans-serif;
+  font-size: 25pt;
+  color: #5c5c70;
+}
+
+ .main-about {
+   text-transform: none;
+   font-family: 'Prata', sans-serif;
+   color: #5c5c70;
+   padding: 0 10%;
+ }
+
+ .main-about p {
+   font-size: 12pt;
+ }
+
+.back-button {
+  font-family: 'Prata', sans-serif;
+  padding: 7px 35px;
+  color: #5c5c70;
+  background-color: white;
+  border-radius: 25px;
+}
+
+.petprofile, table {
+  text-transform: none;
+  font-family: 'Prata', sans-serif;
+}
+.petprofile a {
+  text-transform: none;
+  font-family: 'Scada', sans-serif;
+  font-size: 12pt;
+  color: #5c5c70;
 }
 
 .pet-profiles{

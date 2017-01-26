@@ -6,8 +6,11 @@ class SinglePet extends Component {
   render(){
     return (
       <div className="row singlePet">
+        <div className="pet-cont col-md-12">
+          <h3 className="name pet-cont col-md-5">{this.props.petData.name}</h3><br />
+          <button className="right-align back-button" onClick={this.props.backfn}>View All Pets</button>
+        </div>
         <div className="pet-cont col-md-5">
-          {this.props.petData.name}<br />
           <img className="pet-profile-image" alt="pet" src={this.props.petData.photos}/>
         </div>
         <div className="pet-cont col-md-5">
@@ -66,9 +69,11 @@ class SinglePet extends Component {
         </div>
         <div className="col-md-2">
         </div>
-        <div className="col-lg-5">
-        About {this.props.petData.name}: {this.props.petData.bio}<br />
-        <button onClick={this.props.backfn}>Back to Pets</button>
+        <div className="bio col-lg-5">
+        {this.props.petData.bio}
+        <br />
+        <br />
+        <br />
         </div>
       </div>
     );

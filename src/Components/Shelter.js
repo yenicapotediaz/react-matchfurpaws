@@ -69,7 +69,7 @@ class Shelter extends Component {
     var email_query = email.replace(/@/, "%40");
     $.ajax({
       url:  'https://matchfurpaws-api.herokuapp.com/shelters?email=' + email_query,
-      headers: {'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE0ODU0MTAzMzB9.jGh7AoYdLZSsbtagbyiIWCGYvEwbOQmiGSkELEv0uXg'},
+      headers: {'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE0ODc0NjYzNzF9.xZzX9dF8Leg1UIylLCXLiWkWP-MW6I3H8MgHMdmyP-M'},
       dataType:'json',
       cache: false,
       success: function(data){
