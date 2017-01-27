@@ -71,8 +71,9 @@ header {
   max-width: 100%;
 }
 
-.pet-image, .pet-profile-image {
+.shelter-image, .pet-image, .pet-profile-image {
   max-width: 90%;
+  border-radius: 10px;
 }
 
 .good-with {

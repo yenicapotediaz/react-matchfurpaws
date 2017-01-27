@@ -9,9 +9,11 @@ class ShelterProfile extends Component {
   render(){
     return (
       <div className="row ShelterContainer">
-        <div className="col-md-5">
+        <div className="col-md-12">
           <h2><strong>{this.props.shelter.name}</strong></h2><br />
-          <img className="shelter-image" alt="shelter profile" src={this.props.shelter.photos}/>
+        </div>
+        <div className="col-md-5">
+          <img className="shelter-image" alt="shelter profile" src={this.props.shelter.photo}/>
         </div>
         <div className="col-md-5">
           <table className="shelter-table table table-condensed">
