@@ -12,7 +12,7 @@ class App extends Component {
                <li className="current"><Link to="/">Home</Link></li>
                <li><Link to="pets">Search for pets</Link></li>
                <li><Link to="about">About</Link></li>
-               <li><Link to="shelter">Login</Link></li>
+               <li><Link to="shelter">Shelter</Link></li>
             </ul>
             <div className="content">
               {this.props.children}

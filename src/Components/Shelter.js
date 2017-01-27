@@ -2,15 +2,19 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 
 class ShelterProfile extends Component {
+
+  redirectTo(url){
+    window.location.href="http://"+url;
+  }
   render(){
     return (
       <div className="row ShelterContainer">
         <div className="col-md-5">
-          <strong> {this.props.shelter.name}</strong><br />
+          <h2><strong>{this.props.shelter.name}</strong></h2><br />
           <img className="shelter-image" alt="shelter profile" src={this.props.shelter.photos}/>
         </div>
         <div className="col-md-5">
-          <table className="table table-bordered table-condensed">
+          <table className="shelter-table table table-condensed">
             <tbody>
               <tr>
                 <td>Email</td>
@@ -18,7 +22,7 @@ class ShelterProfile extends Component {
               </tr>
               <tr>
                 <td>Website</td>
-                <td><a href="#">{this.props.shelter.website}</a></td>
+                <td><a href="#" onClick={this.redirectTo.bind(this, this.props.shelter.website)}>{this.props.shelter.website}</a></td>
               </tr>
               <tr>
                 <td>City</td>
@@ -64,11 +68,11 @@ class Shelter extends Component {
     }
   }
 
-  getShelter(email){
-    var email_query = email.replace(/@/, "%40");
+  getShelter(shelter_name){
+    var shelter_query = shelter_name.replace(/ /, "+");
     $.ajax({
-      url:  'https://matchfurpaws-api.herokuapp.com/shelters?email=' + email_query,
-      headers: {'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE0ODc0NjYzNzF9.xZzX9dF8Leg1UIylLCXLiWkWP-MW6I3H8MgHMdmyP-M'},
+      url:  'https://matchfurpaws-api.herokuapp.com/shelters?name=' + shelter_query,
+      headers: {'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE0ODc1ODM3MTB9.wmlcEONP0yoS3HfNikyTC7Ile-TmDlCFgfr0IsRu2eI'},
       dataType:'json',
       cache: false,
       success: function(data){
@@ -83,9 +87,7 @@ class Shelter extends Component {
   render() {
     return (
       <div id="shelters">
-        <div id="form-toggle">
-          <Login onSubmitForm={this.getShelter.bind(this)}/>
-        </div>
+        <SearchShelter onSubmitForm={this.getShelter.bind(this)}/>
         <ShelterCollection shelters={this.state.shelters}/>
       </div>
     );
@@ -93,7 +95,7 @@ class Shelter extends Component {
 }
 
 
-class Login extends Component {
+class SearchShelter extends Component {
   constructor() {
     super();
     this.state = {
@@ -102,29 +104,24 @@ class Login extends Component {
   }
 
   handleSubmit(e){
-    this.setState({user:{
-      email: this.refs.email.value,
-      password: this.refs.password.value
+    this.setState({shelter:{
+      name: this.refs.shelter_name.value
     }}, function(){
-      this.props.onSubmitForm(this.refs.email.value);
+
+      this.props.onSubmitForm(this.refs.shelter_name.value);
     });
     e.preventDefault();
   }
 
   render() {
     return (
-      <div id="login">
-        <h3> Welcome, please log in! </h3>
-        <form onSubmit={this.handleSubmit.bind(this)}>
-        <div>
-          <label>Email</label><br/>
-          <input type="text" ref="email" />
-        </div>
-        <div>
-          <label>Password</label><br/>
-          <input type="password" ref="password" />
-        </div>
-          <input type="submit" value="Submit" />
+      <div id="shelter-search">
+        <form className="form-horizontal shelter-form" onSubmit={this.handleSubmit.bind(this)}>
+          <div className="form-group">
+            <label> Search for a Shelter</label>
+            <input className="rounded" type="text" ref="shelter_name" />
+            <input id="submit-space" type="submit" value="Submit" />
+          </div>
         </form>
       </div>
     );

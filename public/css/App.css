@@ -79,7 +79,7 @@ header {
   padding-left: 10px;
 }
 
- .Container-form {
+ .Container-form, #shelter-search {
   max-width: 85%;
   padding: 7px 7px;
   margin: 1%;
@@ -92,12 +92,42 @@ header {
   font-family: 'Prata', sans-serif;
 }
 
+.shelter-form {
+  text-align: center;
+  margin: 0 5%;
+}
+
+.shelter-table {
+  margin-top: 25px;
+  margin-left: 25px;
+}
+
+.rounded {
+  border-radius: 10px;
+  padding: 1px 5px;
+}
+
+#submit-space {
+  margin-left: 5%;
+}
+
 #pet-form {
   margin-top: 17px;
   padding: 4px;
   border-radius: 5px;
   background-color: white;
   border: 2px solid #e7e7e7;
+}
+
+.Shelters {
+  margin-top: 5%;
+  padding: 0 5%;
+}
+
+.ShelterContainer {
+  padding-top: 1%;
+  line-height: 25px;
+  font-family: 'Prata', sans-serif;
 }
 
 .Pets {
@@ -150,6 +180,13 @@ header {
 .petprofile, table {
   text-transform: none;
   font-family: 'Prata', sans-serif;
+}
+
+table {
+    background: white;
+    border: 1px solid #c3c3c3;
+    border-radius: 10px;
+    border-collapse: separate;
 }
 
 .petprofile a {
