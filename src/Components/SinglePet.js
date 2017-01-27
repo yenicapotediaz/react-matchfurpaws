@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 
 class SinglePet extends Component {
+  redirectTo(url){
+    window.location.href="http://"+url;
+  }
 
   render(){
     return (
@@ -14,7 +17,7 @@ class SinglePet extends Component {
           <img className="pet-profile-image" alt="pet" src={this.props.petData.photos}/>
         </div>
         <div className="pet-cont col-md-5">
-          <table className="table table-bordered table-condensed">
+          <table className="table table-condensed">
             <tbody>
               <tr>
                 <td>Species</td>
@@ -63,6 +66,10 @@ class SinglePet extends Component {
               <tr>
                 <td>Location</td>
                 <td>{this.props.petData.location}</td>
+              </tr>
+              <tr>
+                <td>Shelter</td>
+                <td><a href="#" onClick={this.redirectTo.bind(this, this.props.petData.shelter_url)}>{this.props.petData.shelter_name}</a></td>
               </tr>
             </tbody>
           </table>

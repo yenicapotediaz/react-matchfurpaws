@@ -60,7 +60,7 @@ class Pets extends Component {
 
     $.ajax({
       url:  'https://matchfurpaws-api.herokuapp.com/pets?adoption_status=Available' + species_query + home_query + dogs_query + cats_query + location_query + kids_query,
-      headers: {'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE0ODc0NjYzNzF9.xZzX9dF8Leg1UIylLCXLiWkWP-MW6I3H8MgHMdmyP-M'},
+      headers: {'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE0ODc1ODM3MTB9.wmlcEONP0yoS3HfNikyTC7Ile-TmDlCFgfr0IsRu2eI'},
       dataType:'json',
       cache: false,
       success: function(data){
